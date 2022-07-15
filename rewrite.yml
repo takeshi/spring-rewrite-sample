@@ -5,3 +5,9 @@ recipeList:
   - org.openrewrite.java.ChangePackage:
       oldPackageName: org.springframework.samples.petclinic.vet
       newPackageName: org.springframework.samples.petclinic.veterinary
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.sayHelloA
+recipeList:
+  - com.yourorg.SayHelloRecipe:
+      fullyQualifiedClassName: com.yourorg.A

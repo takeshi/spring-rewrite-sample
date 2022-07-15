@@ -1,50 +1,72 @@
-plugins {
-    id 'java'
-    id 'maven-publish'
+plugins{
+    id'java'
+    id'maven-publish'
     id("org.openrewrite.rewrite") version("5.24.0")
 }
 
-repositories {
+repositories{
     mavenLocal()
     mavenCentral()
 }
 
-rewrite {
+rewrite{
     // Will configure in subsequent steps
-    activeRecipe("org.openrewrite.java.format.AutoFormat")
+    activeRecipe(
+//            "org.openrewrite.java.format.AutoFormat",
+            "com.yourorg.VetToVeterinary",
+            "com.yourorg.sayHelloA",
+    )
+
 }
 
-dependencies {
-    implementation 'javax.inject:javax.inject:1'
-    implementation platform('org.springframework.boot:spring-boot-starter-parent:1.5.4.RELEASE')
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+dependencies{
+
+//    implementation(platform("org.openrewrite.recipe:rewrite-recipe-bom:1.4.0"))
+
+//    testImplementation("org.openrewrite:rewrite-test")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
+
+    // Optional dependencies and only needed if writing tests in Kotlin.
+//    testImplementation("org.jetbrains.kotlin:kotlin-reflect")
+//    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    // Optional dependency on assertJ to provide fluent assertions.
+    testImplementation("org.assertj:assertj-core:latest.release")
+
+    // https://mvnrepository.com/artifact/org.openrewrite/rewrite-java
+    implementation group: 'org.openrewrite',  name: 'rewrite-java',  version: '7.26.0'
+
+    implementation'javax.inject:javax.inject:1'
+    implementation(platform('org.springframework.boot:spring-boot-starter-parent:1.5.4.RELEASE'))
+    implementation'org.springframework.boot:spring-boot-starter-actuator'
+    implementation'org.springframework.boot:spring-boot-starter-cache'
+    implementation'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation'org.springframework.boot:spring-boot-starter-web'
     implementation('org.thymeleaf:thymeleaf-spring4:3.0.6.RELEASE') {
         force = true;
     }
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf') {
-        exclude(group: 'nz.net.ultraq.thymeleaf', module: 'thymeleaf-layout-dialect')
+        exclude(group: 'nz.net.ultraq.thymeleaf',     module: 'thymeleaf-layout-dialect')
     }
-    implementation 'javax.cache:cache-api:1.0.0'
-    implementation 'org.ehcache:ehcache:3.2.2'
-    implementation 'org.webjars:webjars-locator:0.32-1'
-    implementation 'org.webjars:jquery:2.2.4'
-    implementation 'org.webjars:jquery-ui:1.11.4'
-    implementation 'org.webjars:bootstrap:3.3.6'
-    runtimeOnly 'org.hsqldb:hsqldb:2.3.5'
-    runtimeOnly 'mysql:mysql-connector-java:5.1.42'
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools:1.5.4.RELEASE'
-    testImplementation platform('org.springframework.boot:spring-boot-starter-test:1.5.4.RELEASE')
-    testImplementation 'junit:junit'
-    testImplementation 'org.mockito:mockito-core'
-    testImplementation 'org.springframework:spring-test'
-    testImplementation 'org.springframework.boot:spring-boot-test'
-    testImplementation 'org.springframework.boot:spring-boot-test-autoconfigure'
-    testImplementation 'org.hamcrest:hamcrest-library'
-    testImplementation 'org.assertj:assertj-core'
-    testImplementation 'com.jayway.jsonpath:json-path'
+    implementation'javax.cache:cache-api:1.0.0'
+    implementation'org.ehcache:ehcache:3.2.2'
+    implementation'org.webjars:webjars-locator:0.32-1'
+    implementation'org.webjars:jquery:2.2.4'
+    implementation'org.webjars:jquery-ui:1.11.4'
+    implementation'org.webjars:bootstrap:3.3.6'
+    runtimeOnly'org.hsqldb:hsqldb:2.3.5'
+    runtimeOnly'mysql:mysql-connector-java:5.1.42'
+    runtimeOnly'org.springframework.boot:spring-boot-devtools:1.5.4.RELEASE'
+    testImplementation(platform('org.springframework.boot:spring-boot-starter-test:1.5.4.RELEASE'))
+    testImplementation'junit:junit'
+    testImplementation'org.mockito:mockito-core'
+    testImplementation'org.springframework:spring-test'
+    testImplementation'org.springframework.boot:spring-boot-test'
+    testImplementation'org.springframework.boot:spring-boot-test-autoconfigure'
+    testImplementation'org.hamcrest:hamcrest-library'
+    testImplementation'org.assertj:assertj-core'
+    testImplementation'com.jayway.jsonpath:json-path'
 }
 
 group = 'org.springframework.samples'
@@ -52,8 +74,8 @@ version = '1.5.1'
 description = 'petclinic'
 sourceCompatibility = '1.8'
 
-publishing {
-    publications {
+publishing{
+    publications{
         maven(MavenPublication) {
             from(components.java)
         }
