@@ -27,7 +27,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlElement;
+//import javax.xml.bind.annotation.XmlElement;
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
@@ -60,7 +60,7 @@ public class Vet extends Person {
         this.specialties = specialties;
     }
 
-    @XmlElement
+//    @XmlElement
     public List<Specialty> getSpecialties() {
         List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
         PropertyComparator.sort(sortedSpecs,
